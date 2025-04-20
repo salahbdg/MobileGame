@@ -9,6 +9,9 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameActivity extends AppCompatActivity {
 
     private String gameMode;
@@ -67,13 +70,20 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void startSinglePlayerGame() {
-        // Logic for starting single-player game
-        Toast.makeText(this, "Starting Single Player Game", Toast.LENGTH_SHORT).show();
+        List<Challenge> challengeList = new ArrayList<>();
+        challengeList.add(new Challenge("Shake It!", "sensor", 10, com.bdg.mobilegame.challenges.ShakeIt.class));
+        challengeList.add(new Challenge("Catch the Dot", "motion", 10, com.bdg.mobilegame.challenges.CatchDotActivity.class));
+        challengeList.add(new Challenge("Swipe It!", "motion", 10, com.bdg.mobilegame.challenges.SwipeItActivity.class));
+        // Add 3 more as you build them
 
-        // Launch SinglePlayerActivity
-        Intent intent = new Intent(GameActivity.this, SinglePlayerActivity.class);
-        startActivity(intent);
-        finish();  // End the current activity after starting the next one
+        ChallengeManager.getInstance().setChallenges(challengeList);
+
+        Class<?> firstActivity = ChallengeManager.getInstance().getCurrentChallenge().getActivityToLaunch();
+        if (firstActivity != null) {
+            Intent intent = new Intent(this, firstActivity);
+            startActivity(intent);
+            //finish();
+        }
     }
 
     private void startMultiPlayerGame() {

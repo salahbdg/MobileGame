@@ -25,6 +25,11 @@
         <activity android:name=".GameModeActivity"/>
         <activity android:name=".GameActivity"/>
         <activity android:name=".SinglePlayerActivity"/>
+        <activity android:name=".challenges.ShakeIt"/>
+        <activity android:name=".challenges.CatchDotActivity" />
+        <activity android:name=".challenges.SwipeItActivity" />
+
+
 
 
 

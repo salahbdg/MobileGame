@@ -24,11 +24,18 @@
         android:layout_marginTop="20dp"/>
 
     <!-- GridView for Challenge Images -->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:textSize="16dp"
+        android:layout_height="wrap_content"
+        android:text="From the challenges below, three challenges will be randomly selected, try to score as high as you can.\nGood Luck! " />
+
     <GridView
         android:id="@+id/challengesGrid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:numColumns="3"
+        android:numColumns="1"
         android:verticalSpacing="10dp"
         android:horizontalSpacing="10dp"
         android:layout_marginTop="20dp"/>
