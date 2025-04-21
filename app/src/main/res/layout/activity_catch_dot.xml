@@ -15,6 +15,14 @@
         android:textStyle="bold"
         android:textColor="#000000" />
 
+    <TextView
+        android:id="@+id/timerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time Left: 10s"
+        android:textSize="20sp"
+        android:layout_marginBottom="24dp"/>
+
     <ImageView
         android:id="@+id/dot"
         android:layout_width="60dp"
@@ -23,5 +31,6 @@
         android:src="@drawable/circle_background"
         android:background="@drawable/circle_background"
         android:scaleType="centerCrop" />
+
 
 </FrameLayout>

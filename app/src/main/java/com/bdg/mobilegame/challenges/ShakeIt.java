@@ -10,6 +10,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.os.Handler;
 
 import com.bdg.mobilegame.ChallengeManager;
 import com.bdg.mobilegame.R;
@@ -26,6 +27,7 @@ public class ShakeIt extends Activity implements ShakeListener {
     private TextView counterText, timerText;
     private Button startButton;
     private CountDownTimer timer;
+    //private DatabaseReference counterRef;
 
     private final int MAX_SHAKES = 20;
     private final long TIME_LIMIT = 10000; // 10 seconds
@@ -45,25 +47,36 @@ public class ShakeIt extends Activity implements ShakeListener {
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         shakeDetector = new ShakeDetector(this);
 
-        startButton.setOnClickListener(v -> startChallenge());
+        startChallenge();
 
-        // When challenge is completed
-        ChallengeManager.getInstance().addScore(10);  // Add challenge score
+        Button nextChallenge = findViewById(R.id.nextChallenge);
 
-        Class<?> next = ChallengeManager.getInstance().getNextChallengeActivity();
 
-        if (next != null) {
-            startActivity(new Intent(this, next));
-            //finish();
-        } else {
-            // Game Over
-            //Intent intent = new Intent(this, GameOverActivity.class);
+        nextChallenge.setOnClickListener(v ->{
+            // When challenge is completed
+            ChallengeManager.getInstance().addScore(10);  // Add challenge score
+
+            Class<?> next = ChallengeManager.getInstance().getNextChallengeActivity();
+
+            Log.d(
+                    "nextactivity", next.getName()
+            );
+            if (next != null) {
+                startActivity(new Intent(this, next));
+                finish();
+            } else {
+                // Game Over
+                //Intent intent = new Intent(this, GameOverActivity.class);
 //            intent.putExtra("score", ChallengeManager.getInstance().getScore());
 //            startActivity(intent);
 //            finish();
-        }
+            }
+
+        });
+
     }
 
+    // Helper methods
     private void startChallenge() {
         shakeCount = 0;
         counterText.setText("Shakes: 0");
@@ -81,6 +94,17 @@ public class ShakeIt extends Activity implements ShakeListener {
                 timerText.setText("Time's Up!");
                 showResult();
                 startButton.setText("Finish");
+
+                // Add a small delay to allow the user to see the result briefly
+                new Handler().postDelayed(() -> {
+                    // Start the next activity
+                    Class<?> next = ChallengeManager.getInstance().getNextChallengeActivity();
+
+                    if (next != null) {
+                        startActivity(new Intent(ShakeIt.this, next));
+                        finish();
+                    }
+                }, 500); // 1.5 seconds delay
 
             }
         };

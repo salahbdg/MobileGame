@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -76,13 +77,15 @@ public class GameActivity extends AppCompatActivity {
         challengeList.add(new Challenge("Swipe It!", "motion", 10, com.bdg.mobilegame.challenges.SwipeItActivity.class));
         // Add 3 more as you build them
 
+        //shuffle then set challenges for Challenge manager
+        Collections.shuffle(challengeList);
         ChallengeManager.getInstance().setChallenges(challengeList);
 
         Class<?> firstActivity = ChallengeManager.getInstance().getCurrentChallenge().getActivityToLaunch();
         if (firstActivity != null) {
             Intent intent = new Intent(this, firstActivity);
             startActivity(intent);
-            //finish();
+            finish();
         }
     }
 

@@ -53,18 +53,21 @@ public class SwipeItActivity extends AppCompatActivity {
             }
         });
 
-        Class<?> next = ChallengeManager.getInstance().getNextChallengeActivity();
-
-        if (next != null) {
-            startActivity(new Intent(this, next));
-            //finish();
-        } else {
-            // Game Over
-            //Intent intent = new Intent(this, GameOverActivity.class);
-//            intent.putExtra("score", ChallengeManager.getInstance().getScore());
-//            startActivity(intent);
+//        Class<?> next = ChallengeManager.getInstance().getNextChallengeActivity();
+//
+//        Log.d(
+//                "nextactivity", next.getName()
+//        );
+//        if (next != null) {
+//            startActivity(new Intent(this, next));
 //            finish();
-        }
+//        } else {
+//            // Game Over
+//            //Intent intent = new Intent(this, GameOverActivity.class);
+////            intent.putExtra("score", ChallengeManager.getInstance().getScore());
+////            startActivity(intent);
+////            finish();
+//        }
     }
 
     private void onSwipe() {
