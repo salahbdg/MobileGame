@@ -23,15 +23,6 @@
         android:textSize="20sp"
         android:layout_marginBottom="24dp"/>
 
-    <Button
-        android:id="@+id/startShakeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Start Challenge"/>
 
-    <Button
-        android:id="@+id/nextChallenge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="next Challenge"/>
+
 </LinearLayout>

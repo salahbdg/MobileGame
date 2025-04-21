@@ -2,12 +2,15 @@ package com.bdg.mobilegame;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.bdg.mobilegame.challenges.CatchDotActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,9 +75,9 @@ public class GameActivity extends AppCompatActivity {
 
     private void startSinglePlayerGame() {
         List<Challenge> challengeList = new ArrayList<>();
-        challengeList.add(new Challenge("Shake It!", "sensor", 10, com.bdg.mobilegame.challenges.ShakeIt.class));
+        challengeList.add(new Challenge("Shake It!", "sensor", 10, com.bdg.mobilegame.challenges.ShakeIt.class)); // ADD SOUND EFFECT
         challengeList.add(new Challenge("Catch the Dot", "motion", 10, com.bdg.mobilegame.challenges.CatchDotActivity.class));
-        challengeList.add(new Challenge("Swipe It!", "motion", 10, com.bdg.mobilegame.challenges.SwipeItActivity.class));
+        //challengeList.add(new Challenge("Swipe It!", "motion", 10, com.bdg.mobilegame.challenges.SwipeItActivity.class));
         // Add 3 more as you build them
 
         //shuffle then set challenges for Challenge manager
@@ -85,6 +88,12 @@ public class GameActivity extends AppCompatActivity {
         if (firstActivity != null) {
             Intent intent = new Intent(this, firstActivity);
             startActivity(intent);
+
+//            if (ChallengeManager.getInstance().isLastChallenge()){
+//                startActivity(new Intent(GameActivity.this, GameOver.class));
+//                finish();
+//            }
+
             finish();
         }
     }

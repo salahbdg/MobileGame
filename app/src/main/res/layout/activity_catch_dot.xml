@@ -1,36 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/gameArea"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f5f5f5">
+    android:background="#191970"
+    tools:context=".challenges.CatchDotActivity">
 
-    <TextView
-        android:id="@+id/scoreText"
-        android:layout_width="wrap_content"
+    <!-- Status Bar at the top -->
+    <LinearLayout
+        android:id="@+id/statusBar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Score: 0"
-        android:textSize="18sp"
-        android:layout_margin="16dp"
-        android:textStyle="bold"
-        android:textColor="#000000" />
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:background="#000033"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/timerText"
-        android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/scoreText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Score: 0"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/levelText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Level: 1/5"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <!-- Timer Bar below status -->
+    <LinearLayout
+        android:id="@+id/timerBar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Time Left: 10s"
-        android:textSize="20sp"
-        android:layout_marginBottom="24dp"/>
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:background="#000022"
+        app:layout_constraintTop_toBottomOf="@id/statusBar">
 
-    <ImageView
-        android:id="@+id/dot"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_gravity="top|start"
-        android:src="@drawable/circle_background"
-        android:background="@drawable/circle_background"
-        android:scaleType="centerCrop" />
+        <TextView
+            android:id="@+id/timerText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Time: 20s"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
 
+        <TextView
+            android:id="@+id/multiplierText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="x1"
+            android:textColor="#FFD700"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-</FrameLayout>
+    </LinearLayout>
+
+    <!-- Game Area where dots appear -->
+    <FrameLayout
+        android:id="@+id/gameArea"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/timerBar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Initial dot (will be repositioned) -->
+        <ImageView
+            android:id="@+id/dot"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/dot"
+            android:visibility="gone" />
+
+        <!-- Bonus dot -->
+        <ImageView
+            android:id="@+id/bonusDot"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/dot"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

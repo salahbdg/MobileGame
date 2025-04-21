@@ -42,7 +42,7 @@ public class ChallengeManager {
     }
 
     public boolean isLastChallenge() {
-        return challenges == null || currentIndex >= challenges.size() - 1;
+        return currentIndex >= challenges.size() - 1;
     }
 
     public void addScore(int points) {
