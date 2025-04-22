@@ -39,7 +39,9 @@ Each mini-game is implemented as its own Activity for modular control and scalab
   Swipe in the correct directions shown on-screen in a timed sequence.
 
 - **Tap Fast**  
-  Tap the button as many times as possible in a short time span.
+  Tap the screen as many times as possible in a short time span, the users gets to choose whether to act as an incremnenter or decrementer.
+  Based on the role and after 10 seconds time, we determine the winner based on the shared counter sign.
+  Firebase Realtime DB allowed an instantaneous game experience.
 
 - **True or False**  
   Judge statements quickly and accurately.
@@ -135,6 +137,7 @@ graph TD
   - Determine the winner based on the sign of the counter
 - Results are displayed immediately after both players finish, ensuring real-time feedback.
 - An ending game over screen, with the player accumulated score and a background playing music.
+
 
 ---
 
