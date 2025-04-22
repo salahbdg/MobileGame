@@ -60,8 +60,7 @@ public class ShakeIt extends Activity implements ShakeListener {
     }
 
     // Helper methods
-    private void startChallenge() {    private void startChallenge() {
-
+    private void startChallenge() {
         shakeCount = 0;
         counterText.setText("Shakes: 0");
         isChallengeRunning = true;
