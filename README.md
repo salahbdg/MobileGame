@@ -134,6 +134,7 @@ graph TD
   - Create a shared counter
   - Determine the winner based on the sign of the counter
 - Results are displayed immediately after both players finish, ensuring real-time feedback.
+- An ending game over screen, with the player accumulated score and a background playing music.
 
 ---
 
