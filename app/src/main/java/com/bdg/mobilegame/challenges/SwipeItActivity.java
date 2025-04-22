@@ -14,13 +14,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.Random;
 
 import com.bdg.mobilegame.ChallengeManager;
+import com.bdg.mobilegame.GameOver;
 import com.bdg.mobilegame.R;
 
 public class SwipeItActivity extends AppCompatActivity {
 
     private GestureDetector gestureDetector;
     private int score = 0;
-    private final int requiredScore = 5;
+    private final int requiredScore = 10;
     private TextView scoreText;
     private TextView timerText;
     private ImageView arrowImageView;
@@ -216,6 +217,8 @@ public class SwipeItActivity extends AppCompatActivity {
 
         // Hide arrow
         arrowImageView.setVisibility(View.INVISIBLE);
+        ChallengeManager.getInstance().addScore(score);
+
 
         if (score >= requiredScore) {
             // Challenge completed successfully
@@ -226,7 +229,25 @@ public class SwipeItActivity extends AppCompatActivity {
         }
 
         // Finish after a delay to show the toast
-        handler.postDelayed(this::finish, 2000);
+        // Wait before finishing
+        handler.postDelayed(() -> {
+            // Proceed to next challenge or game over
+            if (ChallengeManager.getInstance().isLastChallenge()){
+                Intent intent = new Intent(SwipeItActivity.this, GameOver.class);
+                intent.putExtra("score", ChallengeManager.getInstance().getScore()); // or however you store the score
+                startActivity(intent);
+                finish();
+            }
+
+            Class<?> next = ChallengeManager.getInstance().getNextChallengeActivity();
+            if (next != null) {
+                startActivity(new Intent(SwipeItActivity.this, next));
+                finish();
+            } else {
+                // Game complete logic here
+                finish();
+            }
+        }, 1500);
     }
 
     @Override

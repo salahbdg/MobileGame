@@ -1,5 +1,8 @@
 package com.bdg.mobilegame;
 
+import android.annotation.SuppressLint;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +23,10 @@ public class GameActivity extends AppCompatActivity {
 
     private String gameMode;
     private GridView challengesGrid;
+    private BluetoothAdapter bluetoothAdapter;
+    private final int REQUEST_LOCATION_PERMISSION = 1;
+    private static final int REQUEST_ENABLE_BT = 1001;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +84,11 @@ public class GameActivity extends AppCompatActivity {
         List<Challenge> challengeList = new ArrayList<>();
         challengeList.add(new Challenge("Shake It!", "sensor", 10, com.bdg.mobilegame.challenges.ShakeIt.class)); // ADD SOUND EFFECT
         challengeList.add(new Challenge("Catch the Dot", "motion", 10, com.bdg.mobilegame.challenges.CatchDotActivity.class));
-        //challengeList.add(new Challenge("Swipe It!", "motion", 10, com.bdg.mobilegame.challenges.SwipeItActivity.class));
+        challengeList.add(new Challenge("Swipe It!", "motion", 10, com.bdg.mobilegame.challenges.SwipeItActivity.class));
+        challengeList.add(new Challenge("Swipe It!", "motion", 10, com.bdg.mobilegame.challenges.QuizGameActivity.class));
+        challengeList.add(new Challenge("Swipe It!", "motion", 10, com.bdg.mobilegame.challenges.TrueFalse.class));
+
+
         // Add 3 more as you build them
 
         //shuffle then set challenges for Challenge manager
@@ -88,19 +99,27 @@ public class GameActivity extends AppCompatActivity {
         if (firstActivity != null) {
             Intent intent = new Intent(this, firstActivity);
             startActivity(intent);
-
-//            if (ChallengeManager.getInstance().isLastChallenge()){
-//                startActivity(new Intent(GameActivity.this, GameOver.class));
-//                finish();
-//            }
-
             finish();
         }
     }
 
+    @SuppressLint("MissingPermission")
     private void startMultiPlayerGame() {
         // Logic for starting multiplayer game
         Toast.makeText(this, "Starting Multiplayer Game", Toast.LENGTH_SHORT).show();
+
+        BluetoothManager bluetoothManager = getSystemService(BluetoothManager.class);
+        BluetoothAdapter bluetoothAdapter = bluetoothManager.getAdapter();
+        if (bluetoothAdapter == null) {
+            // Device doesn't support Bluetooth
+            return;
+        }
+
+        if (!bluetoothAdapter.isEnabled()) {
+            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+        }
+
 
         // Launch MultiplayerActivity
         Intent intent = new Intent(GameActivity.this, MultiplayerActivity.class);

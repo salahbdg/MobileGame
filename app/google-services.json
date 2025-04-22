@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "259513332348",
+    "project_id": "mobilegame-beff2",
+    "storage_bucket": "mobilegame-beff2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:259513332348:android:d698bc1e3497ec84888ff9",
+        "android_client_info": {
+          "package_name": "com.bdg.mobilegame"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfKDSlsA3uUSAxPLPXtxL5CGId0rzbTBU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

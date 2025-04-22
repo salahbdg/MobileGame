@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp">
+
+
+
+
+
+    <Button
+        android:id="@+id/resetBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset" />
+
+    <Button
+        android:id="@+id/incrementer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Incrementer" />
+
+    <Button
+        android:id="@+id/decrementer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Decrementer" />
+</LinearLayout>

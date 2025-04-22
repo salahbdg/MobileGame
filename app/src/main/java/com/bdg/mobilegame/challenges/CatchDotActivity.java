@@ -543,7 +543,9 @@ public class CatchDotActivity extends AppCompatActivity {
         handler.postDelayed(() -> {
             // Proceed to next challenge or game over
             if (ChallengeManager.getInstance().isLastChallenge()){
-                startActivity(new Intent(CatchDotActivity.this, GameOver.class));
+                Intent intent = new Intent(CatchDotActivity.this, GameOver.class);
+                intent.putExtra("score", ChallengeManager.getInstance().getScore()); // or however you store the score
+                startActivity(intent);
                 finish();
             }
 

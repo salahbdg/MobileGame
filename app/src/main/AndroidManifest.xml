@@ -5,8 +5,11 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Bluetooth permissions for Android 12+ (API level 31+) -->
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN"
+        android:usesPermissionFlags="neverForLocation"
+        tools:targetApi="s" />
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
-    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
@@ -36,9 +39,13 @@
         <activity android:name=".GameModeActivity"/>
         <activity android:name=".GameActivity"/>
         <activity android:name=".SinglePlayerActivity"/>
+        <activity android:name=".MultiplayerActivity"/>
         <activity android:name=".challenges.ShakeIt"/>
         <activity android:name=".challenges.CatchDotActivity" />
         <activity android:name=".challenges.SwipeItActivity" />
+        <activity android:name=".challenges.QuizGameActivity" />
+        <activity android:name=".challenges.TrueFalse" />
+        <activity android:name=".challenges.TapFast" />
         <activity android:name=".GameOver" />
 
 
